@@ -911,6 +911,94 @@
             "publication_date": "1831",
             "publisher": "Penguin Classics",
             "isbn": "9780140443530"
+        },
+        {
+            "book_name": "Beauty and the Beast",
+            "author_name": "Jeanne-Marie Leprince de Beaumont",
+            "category": "Children's Literature",
+            "publication_date": "1740",
+            "publisher": "HarperFestival",
+            "isbn": "9780062382641"
+        },
+        {
+            "book_name": "The Sword in the Stone",
+            "author_name": "T.H. White",
+            "category": "Children's Literature",
+            "publication_date": "1938",
+            "publisher": "Ace Books",
+            "isbn": "9780441020836"
+        },
+        {
+            "book_name": "Mulan",
+            "author_name": "Robert D. San Souci",
+            "category": "Children's Literature",
+            "publication_date": "1998",
+            "publisher": "Disney Press",
+            "isbn": "9780786841088"
+        },
+        {
+            "book_name": "The Fox and the Hound",
+            "author_name": "Daniel P. Mannix",
+            "category": "Children's Literature",
+            "publication_date": "1967",
+            "publisher": "Disney Press",
+            "isbn": "9780786839009"
+        },
+        {
+            "book_name": "The Emperor's New Groove",
+            "author_name": "Ellen Weiss",
+            "category": "Children's Literature",
+            "publication_date": "2000",
+            "publisher": "Disney Press",
+            "isbn": "9780786833632"
+        },
+        {
+            "book_name": "Tangled",
+            "author_name": "Cynthia Rylant",
+            "category": "Children's Literature",
+            "publication_date": "2010",
+            "publisher": "Disney Press",
+            "isbn": "9781423134496"
+        },
+        {
+            "book_name": "Moana",
+            "author_name": "Kakoune",
+            "category": "Children's Literature",
+            "publication_date": "2016",
+            "publisher": "Random House",
+            "isbn": "9780736436095"
+        },
+        {
+            "book_name": "Zootopia",
+            "author_name": "Catherine Hapka",
+            "category": "Children's Literature",
+            "publication_date": "2016",
+            "publisher": "RH/Disney",
+            "isbn": "9780736433940"
+        },
+        {
+            "book_name": "Frozen",
+            "author_name": "Victoria Saxon",
+            "category": "Children's Literature",
+            "publication_date": "2013",
+            "publisher": "RH/Disney",
+            "isbn": "9780736430512"
+        },
+        {
+            "book_name": "Big Hero 6",
+            "author_name": "Irene Trimble",
+            "category": "Children's Literature",
+            "publication_date": "2014",
+            "publisher": "Random House",
+            "isbn": "9780736431816"
+        },
+        {
+            "book_name": "The Little Mermaid",
+            "author_name": "Irene Trimble",
+            "category": "Children's Literature",
+            "publication_date": "1989",
+            "publisher": "Golden Books",
+            "isbn": "9780307123459"
         }
     ]
 }

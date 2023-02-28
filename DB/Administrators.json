@@ -1,0 +1,15 @@
+{
+    "Administrators":
+    [
+        {
+            "UserName": "Admin",
+            "Email": "lyhxr@example.com",
+            "Password": "admin"
+        },
+        {
+            "UserName": "Admin",
+            "Email": "lyhxr@example.com",
+            "Password": "admin"
+        }
+    ]
+}

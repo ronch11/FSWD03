@@ -11,7 +11,7 @@
  * @license MIT
  */
 
- var Url = require("url")
+var Url = require("url")
 
 exports.XMLHttpRequest = function() {
  /**
@@ -245,3 +245,132 @@ Response
 send
 open
 setRequestHeaders
+
+
+
+
+
+  FXMLHttpRequest = function() {
+
+    // Result & response
+    this.responseText = "";
+    this.responseXML = "";
+    this.status = 0;
+    this.statusText = null;
+
+    //reload part of page with success response
+    this.onLoad = function(){
+        this.responseXML = JSON.parse(this.responseText)
+    }
+
+    //reload part of page with failure response
+    this.onError = function() {
+        // handle the error
+        console.error('Request failed with status ' + xhr.status);
+      };
+
+    this.responseText = {}
+
+
+    var settings = {};
+
+    /**
+     * Open the connection. Currently supports local server requests.
+     *
+     * @param string method Connection method (eg GET, POST)
+     * @param string url URL for the connection.
+     * @param boolean async Asynchronous connection. Default is false.
+     */
+    this.open = function(method, url, async=false) {
+        settings = {
+            "method": method,
+            "url": url,
+            "async": async,
+        };
+        this.status = 1
+    };
+
+    /**
+     * Sets a header for the request.
+     *
+     * @param string header Header name
+     * @param string value Header value
+     */
+    this.setRequestHeader = function(header, value) {
+        headers[header] = value;
+        this.status = 2
+    };
+
+    /**
+     * Sends the request to the server.
+     *
+     * @param string data Optional data to send as request body.
+     */
+    this.send = function(data) {
+    if (this.readyState != this.OPENED) {
+        throw "INVALID_STATE_ERR: connection must be opened before send() is called";
+    }
+    
+    var ssl = false;
+    var url = Url.parse(settings.url);
+    var host = "localhost";
+    var port = 80;
+    // Add query string if one is used
+    var uri = url.pathname + (url.search ? url.search : '');
+    
+    // Set the Host header or the server may reject the request
+    this.setRequestHeader("Host", host);
+    
+    client = http.createClient(port, host, ssl);
+    
+    // Error checking
+    client.addListener('error', function (error) {
+        self.status = 503;
+        self.statusText = error;
+        self.responseText = error.stack;
+        setState(self.DONE);
+        // @todo throw error?
+    })
+
+    // Set content length header
+    if (settings.method == "GET" || settings.method == "HEAD") {
+        data = null;
+    } else if (data) {
+        this.setRequestHeader("Content-Length", data.length);
+        
+        if (!headers["Content-Type"]) {
+            this.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+        }
+    }
+    
+    // Use the correct request method
+    request = client.request(settings.method, uri, headers);
+
+    // Send data to the server
+    if (data) {
+        request.write(data);
+    }
+    
+    request.addListener('response', function(resp) {
+        response = resp;
+        response.setEncoding("utf8");
+        
+        setState(self.HEADERS_RECEIVED);
+
+        self.status = response.statusCode;
+        
+        response.addListener("data", function(chunk) {
+            // Make sure there's some data
+            if (chunk) {
+                self.responseText += chunk;
+            }
+            setState(self.LOADING);
+        });
+
+        response.addListener("end", function() {
+            setState(self.DONE);
+        });
+    });		
+    request.end();
+};
+}

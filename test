@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Book Database</title>
+  </head>
+  <body>
+    <h1>Book Database</h1>
+    
+    <!-- Form for adding a new book -->
+    <h2>Add Book</h2>
+    <form id="add-form">
+      <label for="title">Title:</label>
+      <input type="text" id="title" required><br>
+      <label for="author">Author:</label>
+      <input type="text" id="author" required><br>
+      <label for="year">Year:</label>
+      <input type="number" id="year" required><br>
+      <button type="submit">Add</button>
+    </form>
+    
+    <!-- Table for displaying all books -->
+    <h2>All Books</h2>
+    <table id="book-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Year</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    
+    <!-- JavaScript code -->
+    <script>
+      // Initialize the book database in localStorage
+      if (!localStorage.getItem("books")) {
+        localStorage.setItem("books", JSON.stringify([]));
+      }
+      
+      // Function to add a new book to the database
+      function addBook(event) {
+        event.preventDefault();
+        const title = document.getElementById("title").value;
+        const author = document.getElementById("author").value;
+        const year = document.getElementById("year").value;
+        const book = { title, author, year };
+        const books = JSON.parse(localStorage.getItem("books"));
+        books.push(book);
+        localStorage.setItem("books", JSON.stringify(books));
+        event.target.reset();
+        displayBooks();
+      }
+      
+      // Function to display all books in the database
+      function displayBooks() {
+        const books = JSON.parse(localStorage.getItem("books"));
+        const tbody = document.querySelector("#book-table tbody");
+        tbody.innerHTML = "";
+        for (let i = 0; i < books.length; i++) {
+          const book = books[i];
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${book.title}</td>
+            <td>${book.author}</td>
+            <td>${book.year}</td>
+            <td>
+              <button class="edit" data-index="${i}">Edit</button>
+              <button class="delete" data-index="${i}">Delete</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        }
+      }
+      
+      // Function to delete a book from the database
+      function deleteBook(event) {
+        const index = event.target.dataset.index;
+        const books = JSON.parse(localStorage.getItem("books"));
+        books.splice(index, 1);
+        localStorage.setItem("books", JSON.stringify(books));
+        displayBooks();
+      }
+      
+      // Function to edit a book in the database
+      function editBook(event) {
+        const index = event.target.dataset.index;
+        const books = JSON.parse(localStorage.getItem("books"));
+        const book = books[index];
+        const newTitle = prompt("Enter a new title:", book.title);
+        const newAuthor = prompt("Enter a new author:", book.author);
+        const newYear = prompt("Enter a new year:", book.year);
+        book.title = newTitle;
+        book.author = newAuthor;
+        book.year = newYear;
+        localStorage.setItem("books", JSON.stringify(books));
+        displayBooks();
+      }
+      
+      // Add event listeners to the add-form, book-table, and document
+      const addForm = document.getElementById("add-form");
+      addForm.addEventListener("submit", addBook);
+      const bookTable = document.getElementById("book-table");
+      bookTable.addEventListener("click", function(event) {
+        if (event.target.classList.contains("edit")) {
+          editBook(event);
+        } else if (event.target.classList.contains("delete")) {
+          deleteBook(event);
+        }
+      });
+      document.addEventListener("DOMContentLoaded", displayBooks);
+    </script>
+  </body>
+</html>
+
+This code implements the four basic CRUD operations: 
+creating a new book, reading all books, updating a book, and deleting a book. 
+The data is stored in localStorage, so it persists between page refreshes.
+
+The code is fairly simple and should be easy to understand. 
+The HTML includes a form for adding a new book and a table for displaying all books. 
+The JavaScript includes four functions: addBook, displayBooks, editBook, and deleteBook. 
+The addBook function adds a new book to the database when the form is submitted. 
+The displayBooks function displays all books in the table. 
+The editBook function updates a book when the "Edit" button is clicked. 
+The deleteBook function
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AJAX Example</title>
+    <script>
+      function makeRequest() {
+        const httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = function() {
+          if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            if (httpRequest.status === 200) {
+              const response = JSON.parse(httpRequest.responseText);
+              const output = document.getElementById("output");
+              output.innerHTML = "";
+              for (let i = 0; i < response.length; i++) {
+                const item = response[i];
+                const li = document.createElement("li");
+                li.innerText = item.title;
+                output.appendChild(li);
+              }
+            } else {
+              alert("There was a problem with the request.");
+            }
+          }
+        };
+        httpRequest.open("GET", "https://jsonplaceholder.typicode.com/posts");
+        httpRequest.send();
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="makeRequest()">Make Request</button>
+    <ul id="output"></ul>
+  </body>
+</html>
+This code defines a function called makeRequest that sends a GET request to the JSONPlaceholder API and displays the response on the page. The XMLHttpRequest object is used to make the request, and its onreadystatechange property is set to a function that is called every time the state of the request changes.
+
+When the state of the request is XMLHttpRequest.DONE (i.e., the request is complete), the function checks the status of the request. If the status is 200 (i.e., the request was successful), the response is parsed as JSON and displayed on the page. Otherwise, an error message is displayed.
+
+The HTML includes a button that calls the makeRequest function and a <ul> element with an id of output that is used to display the response.
+
+This is just a simple example, but it should give you an idea of how to use AJAX to make requests and display responses on a web page.
+
+
+
+

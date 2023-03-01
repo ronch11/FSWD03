@@ -1,4 +1,4 @@
-const express = require('express');
+/* const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 
@@ -86,6 +86,76 @@ app.delete('/api/books/:id', (req, res) => {
     saveBooks();
     res.sendStatus(204);
   }
-});
+});*/
+
+
+// CREATE - POST
+const createData = async (data) => {
+  const response = await fetch('../DB/Books.json', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  return await response.json();
+};
+    
+// READ - GET
+const readData = async (id) => {
+  const response = await fetch(`https://example.com/api/data/${id}`, {
+    method: 'GET'
+  });
+
+  return await response.json();
+};
+
+// UPDATE - PUT
+const updateData = async (id, data) => {
+  const response = await fetch(`https://example.com/api/data/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  return await response.json();
+};
+
+// DELETE - DELETE
+const deleteData = async (id) => {
+  const response = await fetch(`https://example.com/api/data/${id}`, {
+    method: 'DELETE'
+  });
+
+  return await response.json();
+};
+
+// Create a new data item
+createData({  "book_name": "Zootopia 2",
+            "author_name": "Catherine Hapka",
+            "category": "Children's Literature",
+            "publication_date": "2016",
+            "publisher": "RH/Disney",
+            "isbn": "9780736433910" })
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+/* 
+// Read an existing data item
+readData(123)
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+
+// Update an existing data item
+updateData(123, { name: 'Jane Doe', age: 35 })
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+
+// Delete an existing data item
+deleteData(123)
+  .then(data => console.log(data))
+  .catch(error => console.error(error)); */
 
 module.exports = app

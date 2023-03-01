@@ -1,6 +1,6 @@
-const http = require('http');
+onst http = require('http');
 const fs = require('fs');
-const { createData, readData, getAllData, updateData, deleteData } = require('./rest api/restApi.js');
+const { createBookData, getBookData, getAllBookData, updateBookData, deleteBookData } = require('./rest api/restApi.js');
 
 const server = http.createServer(async (req, res) => {
   const { method, url } = req;
@@ -9,11 +9,11 @@ const server = http.createServer(async (req, res) => {
     case 'GET':
         {
             if (!bookName) {
-              const books = await getAllData();
+              const books = await getAllBookData();
               res.writeHead(200, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify(books));
             } else {
-              const book = await readData(bookName);
+              const book = await getBookData(bookName);
               if (!book) {
                 res.writeHead(404, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ message: 'Book not found' }));
@@ -31,7 +31,7 @@ const server = http.createServer(async (req, res) => {
             });
             req.on('end', async () => {
               const newBook = JSON.parse(body);
-              const result = await createData(newBook);
+              const result = await createBookData(newBook);
               res.writeHead(201, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify(result));
             });
@@ -44,7 +44,7 @@ const server = http.createServer(async (req, res) => {
             });
             req.on('end', async () => {
               const updatedBook = JSON.parse(body);
-              const result = await updateData(bookName, updatedBook);
+              const result = await updateBookData(bookName, updatedBook);
               if (!result) {
                 res.writeHead(404, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ message: 'Book not found' }));
@@ -56,7 +56,7 @@ const server = http.createServer(async (req, res) => {
           }
     case 'DELETE':
         {
-            const result = await deleteData(bookName);
+            const result = await deleteBookData(bookName);
             if (!result) {
               res.writeHead(404, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify({ message: 'Book not found' }));

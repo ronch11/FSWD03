@@ -25,7 +25,7 @@ function saveBooks() {
       console.error(`Error writing books file: ${err}`);
 =======
 // CREATE - POST
-const createData = async (data) => {
+const createBookData = async (data) => {
     const response = await fetch('http://127.0.0.1:5500/DB/Books.json', {
       method: 'POST',
       headers: {
@@ -38,7 +38,7 @@ const createData = async (data) => {
   };
   
   // READ - GET (by Book Name)
-  const readData = async (book_name) => {
+  const getBookData = async (book_name) => {
     const response = await fetch(`http://127.0.0.1:5500/DB/Books.json`, {
       method: 'GET'
     });
@@ -47,7 +47,7 @@ const createData = async (data) => {
   };
   
   // READ - GET (all)
-  const getAllData = async () => {
+  const getAllBookData = async () => {
     const response = await fetch('http://127.0.0.1:5500/DB/Books.json', {
       method: 'GET'
     });
@@ -57,7 +57,7 @@ const createData = async (data) => {
   };
   
   // UPDATE - PUT
-  const updateData = async (book_name, data) => {
+  const updateBookData = async (book_name, data) => {
     const response = await fetch(`http://127.0.0.1:5500/DB/Books.json`, {
       method: 'GET'
     });
@@ -80,7 +80,7 @@ const createData = async (data) => {
   };
   
   // DELETE - DELETE
-  const deleteData = async (book_name) => {
+  const deleteBookData = async (book_name) => {
     const response = await fetch(`http://127.0.0.1:5500/DB/Books.json`, {
       method: 'GET'
     });
@@ -100,8 +100,10 @@ const createData = async (data) => {
     return null;
   };
 
-// Call createData to add a new book
-createData({
+  module.exports({createBookData,getAllBookData,getBookData,updateBookData,deleteBookData})
+
+// Call createBookData to add a new book
+createBookData({
     book_name: "To Kill a Mockingbird",
     author_name: "Harper Lee",
     category: "Fiction",
@@ -249,18 +251,18 @@ deleteData(123)
 module.exports = app
 =======
   
-  // Call getAllData to retrieve all books
-  getAllData().then((books) => {
+  // Call getAllBookData to retrieve all books
+  getAllBookData().then((books) => {
     console.log(books);
   });
   
-  // Call readData to retrieve a single book by its ISBN
-  readData("To Kill a Mockingbird").then((book) => {
+  // Call getBookData to retrieve a single book by its name
+  getBookData("To Kill a Mockingbird").then((book) => {
     console.log(book);
   });
   
-  // Call updateData to update a book by its ISBN
-  updateData("To Kill a Mockingbird", {
+  // Call updateBookData to update a book by its name
+  updateBookData("To Kill a Mockingbird", {
     book_name: "To Kill a Mockingbird",
     author_name: "Harper Lee",
     category: "Fiction",
@@ -271,8 +273,8 @@ module.exports = app
     console.log(response);
   });
   
-  // Call deleteData to delete a book by its ISBN
-  deleteData("To Kill a Mockingbird").then((response) => {
+  // Call deleteBookData to delete a book by its ISBN
+  deleteBookData("To Kill a Mockingbird").then((response) => {
     console.log(response);
   });
 >>>>>>> c9618c19c21a382192f662db4d81aa0066afef29

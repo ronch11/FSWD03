@@ -75,25 +75,3 @@ bookTable.addEventListener("click", function(event) {
   }
 });
 document.addEventListener("DOMContentLoaded", displayBooks);
-function showBooks() {
-  var temp = document.getElementsByTagName("template")[0];
-  temp.innerHTML = booksTemplate;
-  document.body.appendChild(temp.content.cloneNode(true));
-  var books = document.getElementsByTagName("book");
-  for (var i = 0; i < books.length; i++) {
-    books[i].addEventListener("click", function() {
-      var bookName = this.getAttribute("name");
-      var book = getBook(bookName);
-      if (book) {
-        var bookTemplate = document.getElementById("book-template").innerHTML;
-        var template = Handlebars.compile(bookTemplate);
-        var html = template(book);
-        document.body.innerHTML = html;
-      }
-    });
-  }
-
-}
-
- 
-  exports.FXMLHttpRequest

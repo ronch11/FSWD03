@@ -1,4 +1,35 @@
 
+   
+
+
+function showBooks() {
+  alert("Loading books");
+}
+
+
+
+
+function AddBooks() {
+    const bookName = document.querySelector('#book_name').value;
+    const authorName = document.querySelector('#author_name').value;
+    const category = document.querySelector('#category').value;
+    const publicationDate = document.querySelector('#publication_date').value;
+    const publisher = document.querySelector('#publisher').value;
+    const isbn = document.querySelector('#isbn').value;
+    
+    const newBook = {
+        bookName: bookName,
+        authorName: authorName,
+        category: category,
+        publicationDate: publicationDate,
+        publisher: publisher,
+        isbn: isbn
+    };
+    
+
+}
+
+
 // Initialize the book database in localStorage
 if (!localStorage.getItem("books")) {
   localStorage.setItem("books", JSON.stringify([]));
@@ -76,3 +107,4 @@ bookTable.addEventListener("click", function(event) {
   }
 });
 document.addEventListener("DOMContentLoaded", displayBooks);
+

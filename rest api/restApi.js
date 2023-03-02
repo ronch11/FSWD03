@@ -91,6 +91,10 @@ const createBookData = async (data) => {
   };
 
   module.exports = {createBookData,getAllBookData,getBookData,updateBookData,deleteBookData,getAdminData,createAdminData}
+<<<<<<< HEAD
+=======
+
+>>>>>>> a72f7189d0e372b1aec8f12eeb299e53bacba329
 // // Call createBookData to add a new book
 // createBookData({
 //     book_name: "To Kill a Mockingbird",
@@ -102,11 +106,19 @@ const createBookData = async (data) => {
 //   }).then((response) => {
 //     console.log(response);
 //   });
+<<<<<<< HEAD
   /*
   // Call getAllBookData to retrieve all books
   getAllBookData().then((books) => {
     console.log(books);
   });*/
+=======
+  
+//   // Call getAllBookData to retrieve all books
+//   getAllBookData().then((books) => {
+//     console.log(books);
+//   });
+>>>>>>> a72f7189d0e372b1aec8f12eeb299e53bacba329
   
 //   // Call getBookData to retrieve a single book by its name
 //   getBookData("To Kill a Mockingbird").then((book) => {

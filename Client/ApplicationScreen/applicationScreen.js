@@ -48,6 +48,7 @@ function addBook(event) {
   const books = JSON.parse(localStorage.getItem("books"));
   books.push(book);
   localStorage.setItem("books", JSON.stringify(books));
+  getBookData("To Kill a Mockingbird").then((book) => {console.log(book) });
   event.target.reset();
   displayBooks();
 }

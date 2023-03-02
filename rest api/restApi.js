@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-/* const express = require('express');
-const fs = require('fs');
-const bodyParser = require('body-parser');
-
-const app = express();
-app.use(bodyParser.json());
-
-const booksFile = '../DB/Books.json';
-
-// Read the books collection from the JSON file
-let books = [];
-fs.readFile(booksFile, 'utf8', (err, data) => {
-  if (!err) {
-    books = JSON.parse(data);
-  } else {
-    console.error(`Error reading books file: ${err}`);
-  }
-});
-
-// Save the books collection to the JSON file
-function saveBooks() {
-  fs.writeFile(booksFile, JSON.stringify(books), err => {
-    if (err) {
-      console.error(`Error writing books file: ${err}`);
-=======
 // CREATE - POST
 const createBookData = async (data) => {
     const response = await fetch('http://127.0.0.1:5500/DB/Books.json', {
@@ -33,7 +7,17 @@ const createBookData = async (data) => {
       },
       body: JSON.stringify(data)
     });
-  
+    return await response.json();
+  };
+
+  const createAdminData = async (data) => {
+    const response = await fetch('http://127.0.0.1:5500/DB/Administrators.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
     return await response.json();
   };
   
@@ -45,13 +29,20 @@ const createBookData = async (data) => {
     const data = await response.json();
     return data.books.find((book) => book.book_name === book_name);
   };
+
+  const getAdminData = async (Email) => {
+    const response = await fetch(`http://127.0.0.1:5500/DB/Books.json`, {
+      method: 'GET'
+    });
+    const data = await response.json();
+    return data.Administrators.find((Admin) => Admin.Email === Email);
+  };
   
   // READ - GET (all)
   const getAllBookData = async () => {
     const response = await fetch('http://127.0.0.1:5500/DB/Books.json', {
       method: 'GET'
     });
-  
     const data = await response.json();
     return data.books;
   };
@@ -74,7 +65,6 @@ const createBookData = async (data) => {
       });
   
       return await updateResponse.json();
->>>>>>> c9618c19c21a382192f662db4d81aa0066afef29
     }
     return null;
   };
@@ -100,181 +90,43 @@ const createBookData = async (data) => {
     return null;
   };
 
-  module.exports({createBookData,getAllBookData,getBookData,updateBookData,deleteBookData})
+  module.exports({createBookData,getAllBookData,getBookData,updateBookData,deleteBookData,getAdminData,createAdminData})
 
-// Call createBookData to add a new book
-createBookData({
-    book_name: "To Kill a Mockingbird",
-    author_name: "Harper Lee",
-    category: "Fiction",
-    publication_date: "July 11, 1960",
-    publisher: "J. B. Lippincott & Co.",
-    isbn: "9780446310789"
-  }).then((response) => {
-    console.log(response);
-  });
-<<<<<<< HEAD
-}
-
-// GET all books
-app.get('/api/books', (req, res) => {
-  res.json(books);
-});
-
-// GET a book by ID
-app.get('/api/books/:id', (req, res) => {
-  const bookId = parseInt(req.params.id);
-  const book = books.find(b => b.id === bookId);
-  if (!book) {
-    res.sendStatus(404);
-  } else {
-    res.json(book);
-  }
-});
-
-// POST a new book
-app.post('/api/books', (req, res) => {
-  const book = req.body;
-  if (!book.name || !book.author) {
-    res.sendStatus(400);
-  } else {
-    const newBookId = books.length > 0 ? books[books.length - 1].id + 1 : 1;
-    const newBook = { id: newBookId, name: book.name, author: book.author };
-    books.push(newBook);
-    saveBooks();
-    res.status(201).json(newBook);
-  }
-});
-
-// PUT (update) an existing book
-app.put('/api/books/:id', (req, res) => {
-  const bookId = parseInt(req.params.id);
-  const book = books.find(b => b.id === bookId);
-  if (!book) {
-    res.sendStatus(404);
-  } else {
-    const updatedBook = req.body;
-    if (!updatedBook.name || !updatedBook.author) {
-      res.sendStatus(400);
-    } else {
-      book.name = updatedBook.name;
-      book.author = updatedBook.author;
-      saveBooks();
-      res.json(book);
-    }
-  }
-});
-
-// DELETE a book by ID
-app.delete('/api/books/:id', (req, res) => {
-  const bookId = parseInt(req.params.id);
-  const bookIndex = books.findIndex(b => b.id === bookId);
-  if (bookIndex === -1) {
-    res.sendStatus(404);
-  } else {
-    books.splice(bookIndex, 1);
-    saveBooks();
-    res.sendStatus(204);
-  }
-});*/
-
-
-// CREATE - POST
-const createData = async (data) => {
-  const response = await fetch('../DB/Books.json', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
-
-  return await response.json();
-};
-    
-// READ - GET
-const readData = async (id) => {
-  const response = await fetch(`https://example.com/api/data/${id}`, {
-    method: 'GET'
-  });
-
-  return await response.json();
-};
-
-// UPDATE - PUT
-const updateData = async (id, data) => {
-  const response = await fetch(`https://example.com/api/data/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
-
-  return await response.json();
-};
-
-// DELETE - DELETE
-const deleteData = async (id) => {
-  const response = await fetch(`https://example.com/api/data/${id}`, {
-    method: 'DELETE'
-  });
-
-  return await response.json();
-};
-
-// Create a new data item
-createData({  "book_name": "Zootopia 2",
-            "author_name": "Catherine Hapka",
-            "category": "Children's Literature",
-            "publication_date": "2016",
-            "publisher": "RH/Disney",
-            "isbn": "9780736433910" })
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
-/* 
-// Read an existing data item
-readData(123)
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
-
-// Update an existing data item
-updateData(123, { name: 'Jane Doe', age: 35 })
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
-
-// Delete an existing data item
-deleteData(123)
-  .then(data => console.log(data))
-  .catch(error => console.error(error)); */
-
-module.exports = app
-=======
+// // Call createBookData to add a new book
+// createBookData({
+//     book_name: "To Kill a Mockingbird",
+//     author_name: "Harper Lee",
+//     category: "Fiction",
+//     publication_date: "July 11, 1960",
+//     publisher: "J. B. Lippincott & Co.",
+//     isbn: "9780446310789"
+//   }).then((response) => {
+//     console.log(response);
+//   });
   
   // Call getAllBookData to retrieve all books
   getAllBookData().then((books) => {
     console.log(books);
   });
   
-  // Call getBookData to retrieve a single book by its name
-  getBookData("To Kill a Mockingbird").then((book) => {
-    console.log(book);
-  });
+//   // Call getBookData to retrieve a single book by its name
+//   getBookData("To Kill a Mockingbird").then((book) => {
+//     console.log(book);
+//   });
   
-  // Call updateBookData to update a book by its name
-  updateBookData("To Kill a Mockingbird", {
-    book_name: "To Kill a Mockingbird",
-    author_name: "Harper Lee",
-    category: "Fiction",
-    publication_date: "July 11, 1960",
-    publisher: "J. B. Lippincott & Co.",
-    isbn: "9780446315555"
-  }).then((response) => {
-    console.log(response);
-  });
+//   // Call updateBookData to update a book by its name
+//   updateBookData("To Kill a Mockingbird", {
+//     book_name: "To Kill a Mockingbird",
+//     author_name: "Harper Lee",
+//     category: "Fiction",
+//     publication_date: "July 11, 1960",
+//     publisher: "J. B. Lippincott & Co.",
+//     isbn: "9780446315555"
+//   }).then((response) => {
+//     console.log(response);
+//   });
   
-  // Call deleteBookData to delete a book by its ISBN
-  deleteBookData("To Kill a Mockingbird").then((response) => {
-    console.log(response);
-  });
->>>>>>> c9618c19c21a382192f662db4d81aa0066afef29
+//   // Call deleteBookData to delete a book by its ISBN
+//   deleteBookData("To Kill a Mockingbird").then((response) => {
+//     console.log(response);
+//   });

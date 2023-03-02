@@ -2,14 +2,13 @@
     "Administrators":
     [
         {
-            "UserName": "Admin",
-            "Email": "lyhxr@example.com",
+            "UserName": "Admin",            
             "Password": "admin"
         },
         {
-            "UserName": "Admin",
-            "Email": "lyhxr@example.com",
+            "UserName": "Admin",            
             "Password": "admin"
         }
     ]
 }
+

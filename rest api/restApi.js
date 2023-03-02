@@ -1,132 +1,102 @@
 // CREATE - POST
 const createBookData = async (data) => {
-    const response = await fetch('http://127.0.0.1:5500/DB/Books.json', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    return await response.json();
+    const books = JSON.parse(localStorage.getItem("books")) || [];
+    books.push(data);
+    localStorage.setItem("books", JSON.stringify(books));
+    return data;
   };
-
+  
   const createAdminData = async (data) => {
-    const response = await fetch('http://127.0.0.1:5500/DB/Administrators.json', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    return await response.json();
+    const administrators = JSON.parse(localStorage.getItem("administrators")) || [];
+    administrators.push(data);
+    localStorage.setItem("administrators", JSON.stringify(administrators));
+    return data;
   };
   
   // READ - GET (by Book Name)
   const getBookData = async (book_name) => {
-    const response = await fetch(`http://127.0.0.1:5500/DB/Books.json`, {
-      method: 'GET'
-    });
-    const data = await response.json();
-    return data.books.find((book) => book.book_name === book_name);
+    const books = JSON.parse(localStorage.getItem("books")) || [];
+    return books.find((book) => book.book_name === book_name);
   };
-
-  const getAdminData = async (Email) => {
-    const response = await fetch(`http://127.0.0.1:5500/DB/Books.json`, {
-      method: 'GET'
-    });
-    const data = await response.json();
-    return data.Administrators.find((Admin) => Admin.Email === Email);
+  
+  const getAdminData = async (email) => {
+    const administrators = JSON.parse(localStorage.getItem("administrators")) || [];
+    return administrators.find((admin) => admin.email === email);
   };
   
   // READ - GET (all)
   const getAllBookData = async () => {
-    const response = await fetch('http://127.0.0.1:5500/DB/Books.json', {
-      method: 'GET'
-    });
-    const data = await response.json();
-    return data.books;
+    const books = JSON.parse(localStorage.getItem("books")) || [];
+    return books;
   };
   
   // UPDATE - PUT
   const updateBookData = async (book_name, data) => {
-    const response = await fetch(`http://127.0.0.1:5500/DB/Books.json`, {
-      method: 'GET'
-    });
-    const currentData = await response.json();
-    const bookIndex = currentData.books.findIndex((book) => book.book_name === book_name);
+    const books = JSON.parse(localStorage.getItem("books")) || [];
+    const bookIndex = books.findIndex((book) => book.book_name === book_name);
     if (bookIndex !== -1) {
-      currentData.books[bookIndex] = {...currentData.books[bookIndex], ...data};
-      const updateResponse = await fetch('/Books.json', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(currentData)
-      });
-  
-      return await updateResponse.json();
+      books[bookIndex] = { ...books[bookIndex], ...data };
+      localStorage.setItem("books", JSON.stringify(books));
+      return books[bookIndex];
     }
     return null;
   };
   
   // DELETE - DELETE
   const deleteBookData = async (book_name) => {
-    const response = await fetch(`http://127.0.0.1:5500/DB/Books.json`, {
-      method: 'GET'
-    });
-    const currentData = await response.json();
-    const newBooks = currentData.books.filter((book) => book.book_name !== book_name);
-    if (newBooks.length !== currentData.books.length) {
-      currentData.books = newBooks;
-      const deleteResponse = await fetch('http://127.0.0.1:5500/DB/Books.json', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(currentData)
-      });
-      return await deleteResponse.json();
+    const books = JSON.parse(localStorage.getItem("books")) || [];
+    const newBooks = books.filter((book) => book.book_name !== book_name);
+    if (newBooks.length !== books.length) {
+      localStorage.setItem("books", JSON.stringify(newBooks));
+      return newBooks;
     }
     return null;
   };
 
-  module.exports = {createBookData,getAllBookData,getBookData,updateBookData,deleteBookData,getAdminData,createAdminData}
-
-// // Call createBookData to add a new book
-// createBookData({
-//     book_name: "To Kill a Mockingbird",
-//     author_name: "Harper Lee",
-//     category: "Fiction",
-//     publication_date: "July 11, 1960",
-//     publisher: "J. B. Lippincott & Co.",
-//     isbn: "9780446310789"
-//   }).then((response) => {
-//     console.log(response);
+//   // Creating a new book in the database
+// const bookData = {
+//     book_name: "The Great Gatsby",
+//     author_name: "F. Scott Fitzgerald",
+//     publication_year: 1925,
+//     genre: "Novel",
+//     ISBN: "978-0-684-80146-3",
+//     language: "English",
+//     publisher: "Charles Scribner's Sons"
+//   };
+//   createBookData(bookData).then(data => {
+//     console.log("New book added:", data);
+//   }).catch(error => {
+//     console.error("Error adding book:", error.message);
 //   });
   
-//   // Call getAllBookData to retrieve all books
-//   getAllBookData().then((books) => {
-//     console.log(books);
+//   // Retrieving a book by name
+//   getBookData("To Kill a Mockingbird").then(data => {
+//     console.log("Book found:", data);
+//   }).catch(error => {
+//     console.error("Error finding book:", error.message);
 //   });
   
-//   // Call getBookData to retrieve a single book by its name
-//   getBookData("To Kill a Mockingbird").then((book) => {
-//     console.log(book);
+//   // Retrieving all books
+//   getAllBookData().then(data => {
+//     console.log("All books:", data);
+//   }).catch(error => {
+//     console.error("Error retrieving books:", error.message);
 //   });
   
-//   // Call updateBookData to update a book by its name
-//   updateBookData("To Kill a Mockingbird", {
-//     book_name: "To Kill a Mockingbird",
-//     author_name: "Harper Lee",
-//     category: "Fiction",
-//     publication_date: "July 11, 1960",
-//     publisher: "J. B. Lippincott & Co.",
-//     isbn: "9780446315555"
-//   }).then((response) => {
-//     console.log(response);
+//   // Updating a book by name
+//   const bookUpdateData = {
+//     publication_year: 1960,
+//     publisher: "J. B. Lippincott & Co."
+//   };
+//   updateBookData("To Kill a Mockingbird", bookUpdateData).then(data => {
+//     console.log("Book updated:", data);
+//   }).catch(error => {
+//     console.error("Error updating book:", error.message);
 //   });
   
-//   // Call deleteBookData to delete a book by its ISBN
-//   deleteBookData("To Kill a Mockingbird").then((response) => {
-//     console.log(response);
+//   // Deleting a book by name
+//   deleteBookData("The Catcher in the Rye").then(data => {
+//     console.log("Book deleted:", data);
+//   }).catch(error => {
+//     console.error("Error deleting book:", error.message);
 //   });

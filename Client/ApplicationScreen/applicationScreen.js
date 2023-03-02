@@ -1,4 +1,4 @@
-
+const { createBookData, getBookData, getAllBookData, updateBookData, deleteBookData,getAdminData,createAdminData } = require('./rest api/restApi.js');
    
 
 
@@ -6,7 +6,9 @@ function showBooks() {
   alert("Loading books");
 }
 
-
+ function GetAllBooks() {
+  getAllBookData();
+ }
 
 
 function AddBooks() {
@@ -25,7 +27,8 @@ function AddBooks() {
         publisher: publisher,
         isbn: isbn
     };
-    
+
+    createBookData(newBook);   
 
 }
 

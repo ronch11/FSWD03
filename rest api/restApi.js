@@ -68,6 +68,13 @@ const createBookData = async (data) => {
 //   }).catch(error => {
 //     console.error("Error adding book:", error.message);
 //   });
+<<<<<<< HEAD
+  /*
+  // Call getAllBookData to retrieve all books
+  getAllBookData().then((books) => {
+    console.log(books);
+  });*/
+=======
   
 //   // Retrieving a book by name
 //   getBookData("To Kill a Mockingbird").then(data => {
@@ -75,6 +82,7 @@ const createBookData = async (data) => {
 //   }).catch(error => {
 //     console.error("Error finding book:", error.message);
 //   });
+>>>>>>> a72f7189d0e372b1aec8f12eeb299e53bacba329
   
 //   // Retrieving all books
 //   getAllBookData().then(data => {

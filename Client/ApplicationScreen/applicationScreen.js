@@ -96,25 +96,32 @@ class FXMLHttpRequest {
     // TODO: implement other methods and properties of the XMLHttpRequest class
   }
 
-function showBooks() {
-  var temp = document.getElementsByTagName("template")[0];
-  temp.innerHTML = booksTemplate;
-  document.body.appendChild(temp.content.cloneNode(true));
-  var books = document.getElementsByTagName("book");
-  for (var i = 0; i < books.length; i++) {
-    books[i].addEventListener("click", function() {
-      var bookName = this.getAttribute("name");
-      var book = getBook(bookName);
-      if (book) {
-        var bookTemplate = document.getElementById("book-template").innerHTML;
-        var template = Handlebars.compile(bookTemplate);
-        var html = template(book);
-        document.body.innerHTML = html;
-      }
-    });
-  }
 
+
+
+function showBooks() {
+  alert("Loading books");
 }
 
- 
-  exports.FXMLHttpRequest
+
+
+
+function AddBooks() {
+    const bookName = document.querySelector('#book_name').value;
+    const authorName = document.querySelector('#author_name').value;
+    const category = document.querySelector('#category').value;
+    const publicationDate = document.querySelector('#publication_date').value;
+    const publisher = document.querySelector('#publisher').value;
+    const isbn = document.querySelector('#isbn').value;
+    
+    const newBook = {
+        bookName: bookName,
+        authorName: authorName,
+        category: category,
+        publicationDate: publicationDate,
+        publisher: publisher,
+        isbn: isbn
+    };
+    
+
+}

@@ -46,11 +46,10 @@ class server{
         if(url === "/SignUp"){
           var user = restAPI.getAdminData(body.username)
           if (user !== null) { // if user exists
-              console.log('user already exists')
               response = { status: 404 , body: null }
           } else {
             var user = restAPI.createAdminData(body.data)
-            response = { status: 200 , user: user }
+            response = { status: 200 , body: user }
         }
         } else {
           var book = restAPI.createBookData(body.data)

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animated Login Form</title>
+    <link rel="stylesheet" type="text/css" href="css/StyleOfSingInPage.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="Loginpage">
+        <img class="wave" src="img/wave.png">
+        <div class="container">
+            <div class="img">
+                <img src="img/bg.svg">
+            </div>
+            <div class="login-content">
+                <form action="SingInPage.html">
+                    <img src="img/avatar.svg">
+                    <h2 class="title">Welcome</h2>
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="div">
+                            <h5>Username</h5>
+                            <input type="text" class="input">
+                        </div>
+                    </div>
+                    <div class="input-div pass">
+                        <div class="i">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="div">
+                            <h5>Password</h5>
+                            <input type="password" class="input">
+                        </div>
+                    </div>
+                    <a href="#">Forgot Password?</a>
+                    <input type="submit" class="btn" value="Login">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="app">        
+            <div>
+                <button onclick="GetAllBooks()">display all books</button>                
+            </div>
+            <div>
+                <input type="text"></input>                
+                <button onclick="showBooks()">search for book</button>
+            </div>
+            <div>
+                <label for="book_name">Book name</label>
+                <input type="text" id="book_name" />
+                <label for="author_name">Author name</label>
+                <input type="text" id="author_name" />
+                <label for="category">Category</label>
+                <input type="text" id="category" />
+                <label for="publication_date">Publication year</label>
+                <input type="text" id="publication_date" />
+                <label for="publisher">Publisher</label>
+                <input type="text" id="publisher" />
+                <label for="isbn">isbn</label>
+                <input type="text" id="isbn" />
+                <button onclick="AddBooks()">Add book</button>
+            </div>
+    </div>
+</div>
+
+
+    <script type="text/javascript" src="js/SingInPage.js"></script>
+</body>
+
+</html>

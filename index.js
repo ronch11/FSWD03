@@ -5,9 +5,6 @@ document.getElementById('LogInPageButton').addEventListener('click', sign_in_pag
 document.getElementById('SignUpButton').addEventListener('click', sign_up);
 document.getElementById('SignUpPageButton').addEventListener('click', GetSingUpage);
 
-
-
-
 /* get sign in page */
 function sign_in_page(){
     LoadSinginPage(); // call function to load login page

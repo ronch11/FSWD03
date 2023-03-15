@@ -1,7 +1,7 @@
 import { createBookData, getBookData, getAllBookData, updateBookData, deleteBookData, getAdminData,createAdminData } from "../../rest api/restApi.js";  
 const { createBookData, getBookData, getAllBookData, updateBookData, deleteBookData, getAdminData,createAdminData } = require('../../rest api/restApi.js');
 
-import {FXMLHttpRequest} from "/fajax/FXMLHttpRequest.js";
+import {FXMLhttpRequest} from "/fajax/FXMLhttpRequest.js";
 
 document.getElementById('LogInButton').addEventListener('click', sign_in);
 document.getElementById('LogInPageButton').addEventListener('click', sign_in_page);
@@ -9,6 +9,8 @@ document.getElementById('SignUpButton').addEventListener('click', sign_up);
 document.getElementById('SignUpPageButton').addEventListener('click', sign_up_page);
 document.getElementById('FormSubmit_Click').addEventListener('click', handleFormSubmit);
 document.getElementById('LogOutButton').addEventListener('click', logout);
+document.getElementById('AddBookButton').addEventListener('click', AddBooks);
+document.getElementById('ShowBooksButton').addEventListener('click', showBooks);
 
 
 
@@ -23,6 +25,35 @@ function sign_in_page(){
 function sign_up_page(){
     load_signup_page();
     exit_login_page();
+}
+
+
+function load_login_page(){
+    const taskTemplate = document.getElementById('login-form');
+    // add hide class to login form
+    taskTemplate.classList.add('display-section');
+    taskTemplate.classList.remove('area');
+}
+
+function exit_login_page(){
+    const taskTemplate = document.getElementById('login-form');
+    // add hide class to login form
+    taskTemplate.classList.add('area');
+    taskTemplate.classList.remove('display-section');
+}
+
+function load_signup_page(){
+    const taskTemplate = document.getElementById('signup-form');
+    // add hide class to login form
+    taskTemplate.classList.add('display-section');
+    taskTemplate.classList.remove('area');
+}
+
+function exit_signup_page(){
+    const taskTemplate = document.getElementById('signup-form');
+    // add hide class to login form
+    taskTemplate.classList.add('area');
+    taskTemplate.classList.remove('display-section');
 }
 
 

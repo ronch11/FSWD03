@@ -1,0 +1,23 @@
+   <div class="area" id="main-page">
+           <h1>mylibery</h1>
+            <label for="book_name">Book name</label>
+                <input type="text" id="book_name" />
+                <label for="author_name">Author name</label>
+                <input type="text" id="author_name" />
+                <label for="category">Category</label>
+                <input type="text" id="category" />
+                <label for="publication_date">Publication year</label>
+                <input type="text" id="publication_date" />
+                <label for="publisher">Publisher</label>
+                <input type="text" id="publisher" />
+                <label for="isbn">isbn</label>
+                <input type="text" id="isbn" />
+                <button onclick="AddBooks()">Add book</button>
+	</div>          
+
+
+
+    import { createBookData, getBookData, getAllBookData, updateBookData, deleteBookData, getAdminData,createAdminData } from "../../rest api/restApi.js";  
+const { createBookData, getBookData, getAllBookData, updateBookData, deleteBookData, getAdminData,createAdminData } = require('../../rest api/restApi.js');
+
+import {FXMLhttpRequest} from "/fajax/FXMLhttpRequest.js";

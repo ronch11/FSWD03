@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+</head>
+<body>
+    <div class="form">
+		<div class="display-section" id="login-form">
+			<h1>Login</h1>
+			<input id="UsernameText"  class="input-button" type="text" name="username" placeholder="Username" required>
+			<input id="PasswordText"  class="input-button" type="password" name="password" placeholder="Password" required>
+			<label id="LoginErrorLabel" class="hidden error"></label>
+			<button id="LogInButton" type="button">Log in</button>
+			<button id="SignUpPageButton" type="button">Sign up page</button>
+			<label id="ManyTrialsLabel" class="hidden error">Too many trials!</label>
+		</div>
+		<div class="area" id="signup-form">
+			<h1>Sign Up</h1>
+			<input id="SignUpUsernameText"  class="input-button" type="text" name="username" placeholder="Username" required>
+			<input id="SignUpPasswordText"  class="input-button" type="password" name="password" placeholder="Password" required>
+			<input id="SignUpFNameText"  class="input-button" type="text" name="FName" placeholder="First name" required>
+			<input id="SignUpLNameText"  class="input-button" type="text" name="LName" placeholder="Last name" required>
+			<label id="SignupErrorLabel" class="hidden error"></label>
+			<button id="SignUpButton" type="button">Sign up</button>
+			<button id="LogInPageButton" type="button">Log in page</button>
+		</div>
+        <div class="area" id="main-page">
+           <h1>mylibery</h1>
+            <label for="book_name">Book name</label>
+                <input type="text" id="book_name" />
+                <label for="author_name">Author name</label>
+                <input type="text" id="author_name" />
+                <label for="category">Category</label>
+                <input type="text" id="category" />
+                <label for="publication_date">Publication year</label>
+                <input type="text" id="publication_date" />
+                <label for="publisher">Publisher</label>
+                <input type="text" id="publisher" />
+                <label for="isbn">isbn</label>
+                <input type="text" id="isbn" />
+                <button onclick="AddBooks()">Add book</button>
+	</div>          
+
+    
+</body>
+</html>

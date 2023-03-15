@@ -14,6 +14,90 @@ document.getElementById('ShowBooksButton').addEventListener('click', showBooks);
 
 
 
+function sign_in(event){ 
+    // get password and username from login form
+    var userElement = document.getElementById("UsernameText");
+    var user_username = userElement.value;
+    var passElement = document.getElementById("PasswordText");
+    var user_password = passElement.value;
+
+
+    
+    req.send();
+}
+
+function sign_in_page(){
+    load_login_page();
+    exit_signup_page();
+}
+
+function sign_up(){
+    console.log('enter signup')
+    // get password and username from login form
+    var userElement = document.getElementById("SignUpUsernameText");
+    var user_username = userElement.value;
+    var passElement = document.getElementById("SignUpPasswordText");
+    var user_password = passElement.value;
+    var fnameElement = document.getElementById("SignUpFNameText");
+    var user_fname = fnameElement.value;
+    var lnameElement = document.getElementById("SignUpLNameText");
+    var user_lname = lnameElement.value;
+
+   
+    req.send();
+}
+
+function sign_up_page(){
+    load_signup_page();
+    exit_login_page();
+}
+
+
+function load_login_page(){
+    const taskTemplate = document.getElementById('login-form');
+    // add hide class to login form
+    taskTemplate.classList.add('display-section');
+    taskTemplate.classList.remove('area');
+}
+
+function exit_login_page(){
+    const taskTemplate = document.getElementById('login-form');
+    // add hide class to login form
+    taskTemplate.classList.add('area');
+    taskTemplate.classList.remove('display-section');
+}
+
+function load_signup_page(){
+    const taskTemplate = document.getElementById('signup-form');
+    // add hide class to login form
+    taskTemplate.classList.add('display-section');
+    taskTemplate.classList.remove('area');
+}
+
+function exit_signup_page(){
+    const taskTemplate = document.getElementById('signup-form');
+    // add hide class to login form
+    taskTemplate.classList.add('area');
+    taskTemplate.classList.remove('display-section');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function showBooks() {

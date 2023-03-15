@@ -1,4 +1,5 @@
 
+
 document.getElementById('LogInButton').addEventListener('click', sign_in);
 document.getElementById('LogInPageButton').addEventListener('click', sign_in_page);
 document.getElementById('SignUpButton').addEventListener('click', sign_up);
@@ -48,12 +49,21 @@ function RemoveSignInPage(){
     taskTemplate.classList.remove('display-section');// remove display class to login form
 }
 
+function LoadMyApp(){
+    const taskTemplate = document.getElementById('main-page');// get my app
+    taskTemplate.classList.add('display-section');// add display class to my app
+    taskTemplate.classList.remove('area');// remove hide class to my app
+}
+
 
 
 
 function sign_in(event){ 
-   
-    
+   // get password and username from login form
+    var userElement = document.getElementById("UsernameText");
+    var user_username = userElement.value;
+    var passElement = document.getElementById("PasswordText");
+    var user_password = passElement.value;    
 }
 
 

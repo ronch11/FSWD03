@@ -17,7 +17,6 @@ function LoadSinginPage(){
     taskTemplate.classList.add('display-section');// add display class to login form
     taskTemplate.classList.remove('area');// remove hide class to login form
 }
-
 /* remove signup page */
 function RemoveSignUpPage(){
     const taskTemplate = document.getElementById('signup-form');// get signup form
@@ -46,21 +45,55 @@ function RemoveSignInPage(){
     taskTemplate.classList.remove('display-section');// remove display class to login form
 }
 
-function LoadMyApp(){
-    const taskTemplate = document.getElementById('main-page');// get my app
-    taskTemplate.classList.add('display-section');// add display class to my app
-    taskTemplate.classList.remove('area');// remove hide class to my app
+function geyMyApp(){
+    LoadMyApp();
+    RemoveSignInPage();
+    RemoveSignUpPage();    
 }
 
 
-
+function LoadMyApp(){
+    const taskTemplate = document.getElementById('My-app');// get my app
+    taskTemplate.classList.add('display-section');// add display class to my app
+    taskTemplate.classList.remove('area');// remove hide class to my app
+}
 
 function sign_in(event){ 
    // get password and username from login form
     var userElement = document.getElementById("UsernameText");
     var user_username = userElement.value;
     var passElement = document.getElementById("PasswordText");
-    var user_password = passElement.value;    
+    var user_password = passElement.value;
+    geyMyApp();      
+}
+
+
+
+
+
+
+
+function AddBooks() {
+    const bookName = document.querySelector('#book_name').value;
+    const authorName = document.querySelector('#author_name').value;
+    const category = document.querySelector('#category').value;
+    const publicationDate = document.querySelector('#publication_date').value;
+    const publisher = document.querySelector('#publisher').value;
+    const isbn = document.querySelector('#isbn').value;
+    
+    const newBook = {
+      book_name: bookName,
+      author_name: authorName,
+      category: category,
+      publication_date: publicationDate,
+      publisher: publisher,
+      isbn: isbn
+    };
+    createBookData(newBook).then(data => {
+      console.log("New book added:", data);
+    }).catch(error => {
+      console.error("Error adding book:", error.message);
+    });
 }
 
 
@@ -74,9 +107,6 @@ function sign_in(event){
 
 
 
-function sign_up(){
-   
-}
 
 
 

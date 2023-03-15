@@ -67,34 +67,15 @@ function sign_in(event){
     geyMyApp();      
 }
 
+function sign_up(event){
 
 
-
-
-
-
-function AddBooks() {
-    const bookName = document.querySelector('#book_name').value;
-    const authorName = document.querySelector('#author_name').value;
-    const category = document.querySelector('#category').value;
-    const publicationDate = document.querySelector('#publication_date').value;
-    const publisher = document.querySelector('#publisher').value;
-    const isbn = document.querySelector('#isbn').value;
-    
-    const newBook = {
-      book_name: bookName,
-      author_name: authorName,
-      category: category,
-      publication_date: publicationDate,
-      publisher: publisher,
-      isbn: isbn
-    };
-    createBookData(newBook).then(data => {
-      console.log("New book added:", data);
-    }).catch(error => {
-      console.error("Error adding book:", error.message);
-    });
 }
+
+
+
+
+
 
 
 

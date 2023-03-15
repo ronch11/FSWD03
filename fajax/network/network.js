@@ -1,4 +1,6 @@
-class network {
+
+
+export class network {
     /**
      * send the reuest to the server.
      * @param FXMLhttpRequest the request to the server

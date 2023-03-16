@@ -57,6 +57,8 @@ function LoadMyApp(){
     taskTemplate.classList.add('display-section');// add display class to my app
     taskTemplate.classList.remove('area');// remove hide class to my app
 }
+z
+
 
 function sign_in(event){ 
    // get password and username from login form
@@ -77,7 +79,6 @@ function sign_up(event){
     var user_fname = fnameElement.value;
     var lnameElement = document.getElementById("SignUpLNameText");
     var user_lname = lnameElement.value;
-
     geyMyApp();
 
 

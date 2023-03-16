@@ -43,8 +43,44 @@
 			<input type="text" id="publisher" />
 			<label for="isbn">isbn</label>
 			<input type="text" id="isbn" />
-			<button onclick="AddBooks()">Add book</button>
-						
+			<button onclick="AddBooks()">Add book</button>						
+		</div>
+		<div class="area" id="my-table">
+
+			<main class="table">
+        <section class="table__header">
+            <h1>Customer's Orders</h1>
+            <div class="input-group">
+                <input type="search" placeholder="Search Data...">
+                <img src="images/search.png" alt="">
+            </div>           
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th> book_name <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> author_name <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> category <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>publication_date <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> publisher <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> isbn <span class="icon-arrow">&UpArrow;</span></th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </section>	
+
+
+
+
+
+
+
+
+
+
 		</div>		
 	</div>
     

@@ -1,0 +1,49 @@
+/* Table styles */
+#membersDataGrid {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#membersDataGrid th,
+#membersDataGrid td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#membersDataGrid th {
+  background-color: #f2f2f2;
+}
+
+#membersDataGrid td[data-label]:before {
+  content: attr(data-label);
+  float: left;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+/* Button styles */
+.update-button,
+.remove-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.update-button i,
+.remove-button i {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.update-button i:before {
+  content: "\f303";
+}
+
+.remove-button i:before {
+  content: "\f2ed";
+}

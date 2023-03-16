@@ -57,7 +57,8 @@ function LoadMyApp(){
     taskTemplate.classList.add('display-section');// add display class to my app
     taskTemplate.classList.remove('area');// remove hide class to my app
 }
-z
+
+
 
 
 function sign_in(event){ 

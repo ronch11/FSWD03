@@ -5,6 +5,8 @@ document.getElementById('LogInPageButton').addEventListener('click', sign_in_pag
 document.getElementById('SignUpButton').addEventListener('click', sign_up);
 document.getElementById('SignUpPageButton').addEventListener('click', GetSingUpage);
 document.getElementById('AddBooksButton').addEventListener('click', AddBooks);
+document.getElementById('displayAll').addEventListener('click', displayBooks);
+document.getElementById('searchForBookButton').addEventListener('click', searchForBook);
 
 
 /* get sign in page */
@@ -179,6 +181,41 @@ function displayBooks() {
 
         // tr.querySelector('.edit').addEventListener('click' , editBook);
         // tr.querySelector('.delete').addEventListener('click' , deleteBook);
+    }
+}
+
+function searchForBook() {
+    const book_name = document.querySelector('#searchForBook').value;
+    let books = {};
+    var req = new FXMLhttpRequest();
+    req.open(
+     'GET',
+     '',
+     {book_name: book_name},
+     function(response) {
+        if (response.status === 200){
+            books = response.body
+        }
+    });
+    req.send();
+
+    const tbody = document.getElementById('table-body')
+    tbody.innerHTML = "";
+    for (let i = 0; i < 1; i++) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${books.book_name}</td>
+            <td>${books.author_name}</td>
+            <td>${books.category}</td>
+            <td>${books.publication_date}</td>
+            <td>${books.publisher}</td>
+            <td>${books.isbn}</td>
+            <td>
+            <button class="edit" data-index="${i}">Edit</button>
+            <button class="delete" data-index="${i}">Delete</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
     }
 }
 

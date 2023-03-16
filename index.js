@@ -1,9 +1,10 @@
-
+import { FXMLhttpRequest } from "./fajax/FXMLHttpRequest.js";
 
 document.getElementById('LogInButton').addEventListener('click', sign_in);
 document.getElementById('LogInPageButton').addEventListener('click', sign_in_page);
 document.getElementById('SignUpButton').addEventListener('click', sign_up);
 document.getElementById('SignUpPageButton').addEventListener('click', GetSingUpage);
+document.getElementById('AddBooksButton').addEventListener('click', AddBooks);
 
 /* get sign in page */
 function sign_in_page(){
@@ -67,7 +68,25 @@ function sign_in(event){
     var user_username = userElement.value;
     var passElement = document.getElementById("PasswordText");
     var user_password = passElement.value;
-    geyMyApp();      
+    var req = new FXMLhttpRequest();
+    req.open(
+     'GET',
+     '/SignIn',
+     {username: user_username},
+     function(response) {
+        if (response.status === 200){
+            if(response.body.Password=== user_password){
+                geyMyApp();      
+            }
+            else{
+                alert("user or password is not correct");
+            }
+        }
+        else{
+            alert("user or password is not correct");
+        }
+    });
+    req.send();
 }
 
 function sign_up(event){
@@ -80,10 +99,45 @@ function sign_up(event){
     var user_fname = fnameElement.value;
     var lnameElement = document.getElementById("SignUpLNameText");
     var user_lname = lnameElement.value;
-    geyMyApp();
 
-
+    var req = new FXMLhttpRequest();
+    req.open(
+     'POST',
+     '/SignUp',
+     {data:{username: user_username, Password: user_password, firstName: user_fname, lastName:user_lname}},
+     function(response) {
+        if (response.status === 200){
+            geyMyApp();      
+        }
+        else{
+            alert("username is already taken, try differnt one");
+        }
+    });
+    req.send();
 }
+
+// function AddBooks() {
+//     const bookName = document.querySelector('#book_name').value;
+//     const authorName = document.querySelector('#author_name').value;
+//     const category = document.querySelector('#category').value;
+//     const publicationDate = document.querySelector('#publication_date').value;
+//     const publisher = document.querySelector('#publisher').value;
+//     const isbn = document.querySelector('#isbn').value;
+    
+//     const newBook = {
+//     book_name: bookName,
+//     author_name: authorName,
+//     category: category,
+//     publication_date: publicationDate,
+//     publisher: publisher,
+//     isbn: isbn
+//     };
+//     createBookData(newBook).then(data => {
+//     console.log("New book added:", data);
+//     }).catch(error => {
+//     console.error("Error adding book:", error.message);
+//     });
+// }
 
 function AddBooks() {
     const bookName = document.querySelector('#book_name').value;
@@ -92,20 +146,29 @@ function AddBooks() {
     const publicationDate = document.querySelector('#publication_date').value;
     const publisher = document.querySelector('#publisher').value;
     const isbn = document.querySelector('#isbn').value;
-    
+
     const newBook = {
-    book_name: bookName,
-    author_name: authorName,
-    category: category,
-    publication_date: publicationDate,
-    publisher: publisher,
-    isbn: isbn
-    };
-    createBookData(newBook).then(data => {
-    console.log("New book added:", data);
-    }).catch(error => {
-    console.error("Error adding book:", error.message);
+        book_name: bookName,
+        author_name: authorName,
+        category: category,
+        publication_date: publicationDate,
+        publisher: publisher,
+        isbn: isbn
+        };
+
+    var req = new FXMLhttpRequest();
+    req.open(
+     'POST',
+     '',
+     {data: newBook},
+     function(response) {
+        console.log(response)
+        if (response.status === 200){
+            var task = response.task;
+            addTask(task);
+        }
     });
+    req.send();
 }
 
 

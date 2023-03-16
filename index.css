@@ -33,10 +33,11 @@ body {
   position: absolute;
   top: 50%;
   left: 20%;
-  transform: translate(-50%, -50%);
+  transform: translate(5%, 5%);
   width: 300px;  
   padding: 20px;
-  
+  flex: auto;
+  flex-wrap: wrap;
 }
 
 .form h1 {

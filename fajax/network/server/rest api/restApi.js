@@ -1,13 +1,13 @@
-class restAPI{
+export class restAPI{
   // CREATE - POST
-  createBookData = (data) => {
+  static createBookData = (data) => {
     const books = JSON.parse(localStorage.getItem("books")) || [];
     books.push(data);
     localStorage.setItem("books", JSON.stringify(books));
     return data;
   };
 
-  createAdminData = (data) => {
+  static createAdminData = (data) => {
     const administrators = JSON.parse(localStorage.getItem("administrators")) || [];
     administrators.push(data);
     localStorage.setItem("administrators", JSON.stringify(administrators));
@@ -15,24 +15,24 @@ class restAPI{
   };
 
   // READ - GET (by Book Name)
-  getBookData = (book_name) => {
+  static getBookData = (book_name) => {
     const books = JSON.parse(localStorage.getItem("books")) || [];
     return books.find((book) => book.book_name === book_name);
   };
 
-  getAdminData = (Username) => {
+  static getAdminData = (Username) => {
     const administrators = JSON.parse(localStorage.getItem("administrators")) || [];
-    return administrators.find((admin) => admin.Username === Username);
+    return administrators.find((admin) => admin.UserName === Username);
   };
 
   // READ - GET (all)
-  getAllBookData = () => {
+  static getAllBookData = () => {
     const books = JSON.parse(localStorage.getItem("books")) || [];
     return books;
   };
 
   // UPDATE - PUT
-  updateBookData = (book_name, data) => {
+  static updateBookData = (book_name, data) => {
     const books = JSON.parse(localStorage.getItem("books")) || [];
     const bookIndex = books.findIndex((book) => book.book_name === book_name);
     if (bookIndex !== -1) {
@@ -44,7 +44,7 @@ class restAPI{
   };
 
   // DELETE - DELETE
-  deleteBookData = (book_name) => {
+  static deleteBookData = (book_name) => {
     const books = JSON.parse(localStorage.getItem("books")) || [];
     const newBooks = books.filter((book) => book.book_name !== book_name);
     if (newBooks.length !== books.length) {

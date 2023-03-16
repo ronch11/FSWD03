@@ -1,4 +1,6 @@
-class FXMLhttpRequest {
+import { network } from "./network/network.js";
+
+export class FXMLhttpRequest {
     /**
      * method to open request to the server through the network
      * @param {string} method the method whated to do

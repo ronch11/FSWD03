@@ -28,7 +28,7 @@
 			<button id="SignUpButton" type="button">Sign up</button>
 			<button id="LogInPageButton" type="button">Log in page</button>
 		</div>
-		<div class="area" id="My-app">
+		<div class="area right" id="My-app">
 			<h1>mylibery</h1>			
 			<label for="book_name">Book name</label>
 			<input type="text" id="book_name" />
@@ -42,7 +42,7 @@
 			<input type="text" id="publisher" />
 			<label for="isbn">isbn</label>
 			<input type="text" id="isbn" />
-			<button onclick="AddBooks()">Add book</button>			
+			<button id="AddBooksButton" onclick="AddBooks()">Add book</button>			
 			<main class="table">
 			<section class="table__header">
 				<h1>All Books</h1>
@@ -50,7 +50,7 @@
 					<input type="search" placeholder="Search Data...">                
 				</div>           
 			</section>
-			<section class="table__body">
+			<section class="table__body left">
 				<table>
 					<thead>
 						<tr>
@@ -66,29 +66,12 @@
 					</tbody>
 				</table>
 			</section>	
-
-
-
-		</div>
-		
-
-
-
-
-
-
-
-
-
-
-		</div>		
+		</div>	
 	</div>
-
     <script src="./index.js" type="module"></script>
 	<script src="/fajax/FXMLHttpRequest.js" type="module"></script>
 	<script src="/fajax/network/network.js" type="module"></script>
 	<script src="/fajax/network/server/server.js" type="module"></script>
 	<script src="/fajax/network/server/rest api/restApi.js" type="module"></script>
-    
 </body>
 </html>

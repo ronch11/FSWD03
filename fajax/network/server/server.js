@@ -1,13 +1,14 @@
+import { restAPI } from "./rest api/restApi.js";
 /**
  * class that represent server working
  */
-class server{
+export class server{
   /**
    * this function is handeling calls that arrived to the server from the network
    * @param FXMLhttpRequest the request to the server
    * @param onReady the call back function 
    */
-  UseServer = (FXMLhttpRequest, onReady) => {
+  static UseServer = (FXMLhttpRequest, onReady) => {
     var url = FXMLhttpRequest.url
     var body = FXMLhttpRequest.body
     var method = FXMLhttpRequest.method
@@ -18,7 +19,7 @@ class server{
         if(url === "/SignIn"){
           var user = restAPI.getAdminData(body.username)
           // if user exists
-          if (user !== null) {
+          if (user !== undefined) {
               response = { status: 200, body: user }
           } else {
               response = { status: 404, body: null }
@@ -40,12 +41,13 @@ class server{
           }
         }
         onReady(response)
+        break
       }
       case 'POST':
       {
         if(url === "/SignUp"){
-          var user = restAPI.getAdminData(body.username)
-          if (user !== null) { // if user exists
+          var user = restAPI.getAdminData(body.data.username)
+          if (user !== undefined) { // if user exists
               response = { status: 404 , body: null }
           } else {
             var user = restAPI.createAdminData(body.data)
@@ -56,6 +58,7 @@ class server{
           response = { status: 200, body: book }
         }
         onReady(response)
+        break
       }
       case 'PUT':
       {
@@ -65,6 +68,7 @@ class server{
         else 
         response = { status: 404, body: null }
         onReady(response)
+        break
       }
       case 'DELETE':
       {
@@ -74,6 +78,7 @@ class server{
         else 
           response = { status: 404, body: null }
         onReady(response)
+        break
       }
     }
   }

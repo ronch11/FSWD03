@@ -54,30 +54,3 @@ export class restAPI{
     return null;
   };
 }
-//   // Creating a new book in the database
-// const bookData = {
-//     book_name: "The Great Gatsby",
-//     author_name: "F. Scott Fitzgerald",
-//     publication_year: 1925,
-//     genre: "Novel",
-//     ISBN: "978-0-684-80146-3",
-//     language: "English",
-//     publisher: "Charles Scribner's Sons"
-//   };
-//   createBookData(bookData)
-
-// // Retrieving a book by name
-// getBookData("To Kill a Mockingbird")
-  
-//   // Retrieving all books
-//   getAllBookData()
-  
-//   // Updating a book by name
-//   const bookUpdateData = {
-//     publication_year: 1960,
-//     publisher: "J. B. Lippincott & Co."
-//   };
-//   updateBookData("To Kill a Mockingbird", bookUpdateData)
-  
-//   // Deleting a book by name
-//   deleteBookData("The Catcher in the Rye")

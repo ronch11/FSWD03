@@ -117,20 +117,20 @@ function sign_up(event){
 }
 
 function AddBooks() {
-    const bookName = document.querySelector('#book_name').value;
-    const authorName = document.querySelector('#author_name').value;
-    const category = document.querySelector('#category').value;
-    const publicationDate = document.querySelector('#publication_date').value;
-    const publisher = document.querySelector('#publisher').value;
-    const isbn = document.querySelector('#isbn').value;
+    const bookName = document.querySelector('#book_name')
+    const authorName = document.querySelector('#author_name')
+    const category = document.querySelector('#category')
+    const publicationDate = document.querySelector('#publication_date')
+    const publisher = document.querySelector('#publisher')
+    const isbn = document.querySelector('#isbn')
 
     const newBook = {
-        book_name: bookName,
-        author_name: authorName,
-        category: category,
-        publication_date: publicationDate,
-        publisher: publisher,
-        isbn: isbn
+        book_name: bookName.value,
+        author_name: authorName.value,
+        category: category.value,
+        publication_date: publicationDate.value,
+        publisher: publisher.value,
+        isbn: isbn.value
         };
     var req = new FXMLhttpRequest();
     req.open(
@@ -138,11 +138,19 @@ function AddBooks() {
      '',
      {data: newBook},
      function(response) {
-        if (response.status === 200){
+        if (response.status === 404){
+            alert("book with that name already exists")
+        } else {
             displayBooks()
         }
     });
     req.send();
+    bookName.value = ""
+    authorName.value = ""
+    category.value= ""
+    publicationDate.value= ""
+    publisher.value= ""
+    isbn.value= ""
 }
 
 // Function to display all books in the database
@@ -179,8 +187,8 @@ function displayBooks() {
         `;
         tbody.appendChild(tr);
 
-        // tr.querySelector('.edit').addEventListener('click' , editBook);
-        // tr.querySelector('.delete').addEventListener('click' , deleteBook);
+        tr.querySelector('.edit').addEventListener('click' , editBook);
+        tr.querySelector('.delete').addEventListener('click' , deleteBook);
     }
 }
 
@@ -223,52 +231,77 @@ function searchForBook() {
     
 }
 
-// // Function to delete a book from the database
-// function deleteBook(event) {
-//     var books = {};
-//     var req = new FXMLhttpRequest();
-//     req.open(
-//      'GET',
-//      '',
-//      null,
-//      function(response) {
-//         if (response.status === 200){
-//             books = response.body
-//         }
-//     });
-//     req.send();
-//   const index = event.target.dataset.index;
-//   var req = new FXMLhttpRequest();
-//     req.open(
-//      'POST',
-//      '',
-//      {data: newBook},
-//      function(response) {
-//         console.log(response)
-//         if (response.status === 200){
+// Function to delete a book from the database
+function deleteBook(event) {
+    var books = {};
+    var req = new FXMLhttpRequest();
+    req.open(
+     'GET',
+     '',
+     null,
+     function(response) {
+        if (response.status === 200){
+            books = response.body
+        }
+    });
+    req.send();
 
-//             //to do
+  const index = event.target.dataset.index;
 
-//         }
-//     });
-//     req.send();
-//   const books = JSON.parse(localStorage.getItem("books"));
-//   books.splice(index, 1);
-//   localStorage.setItem("books", JSON.stringify(books));
-//   displayBooks();
-// }
+  var req = new FXMLhttpRequest();
+    req.open(
+     'DELETE',
+     '',
+     {book_name: books[index].book_name},
+     function(response) {
+        console.log(response)
+        if (response.status === 200){
+            displayBooks()
+        }
+    });
+    req.send();
+}
 
-// // Function to edit a book in the database
-// function editBook(event) {
-//   const index = event.target.dataset.index;
-//   const books = JSON.parse(localStorage.getItem("books"));
-//   const book = books[index];
-//   const newTitle = prompt("Enter a new title:", book.title);
-//   const newAuthor = prompt("Enter a new author:", book.author);
-//   const newYear = prompt("Enter a new year:", book.year);
-//   book.title = newTitle;
-//   book.author = newAuthor;
-//   book.year = newYear;
-//   localStorage.setItem("books", JSON.stringify(books));
-//   displayBooks();
-// }
+// Function to edit a book in the database
+function editBook(event) {
+    var books = {};
+    var req = new FXMLhttpRequest();
+    req.open(
+        'GET',
+        '',
+        null,
+        function(response) {
+        if (response.status === 200){
+            books = response.body
+        }
+    });
+    req.send();
+
+    const index = event.target.dataset.index;
+
+    const book = books[index]
+
+    req.open(
+        'DELETE',
+        '',
+        {book_name: book.book_name},
+        function(response) {}
+    );
+    req.send();
+
+    const bookName = document.querySelector('#book_name')
+    const authorName = document.querySelector('#author_name')
+    const category = document.querySelector('#category')
+    const publicationDate = document.querySelector('#publication_date')
+    const publisher = document.querySelector('#publisher')
+    const isbn = document.querySelector('#isbn')
+    
+    bookName.value = book.book_name
+    authorName.value = book.author_name
+    category.value= book.category
+    publicationDate.value= book.publication_date
+    publisher.value= book.publisher
+    isbn.value= book.isbn
+    
+    displayBooks();
+}

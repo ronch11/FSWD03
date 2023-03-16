@@ -54,8 +54,13 @@ export class server{
             response = { status: 200 , body: user }
         }
         } else {
-          var book = restAPI.createBookData(body.data)
-          response = { status: 200, body: book }
+          var book = restAPI.getBookData(body.data.book_name)
+          if (book !== undefined) {
+            response = { status: 404, body: null }
+          } else {
+            var book = restAPI.createBookData(body.data)
+            response = { status: 200, body: book }
+          }
         }
         onReady(response)
         break
@@ -72,7 +77,7 @@ export class server{
       }
       case 'DELETE':
       {
-        var books = restAPI.deleteBookData(book_name)
+        var books = restAPI.deleteBookData(body.book_name)
         if (books)
           response = { status: 200, body: books }
         else 

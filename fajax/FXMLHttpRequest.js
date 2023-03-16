@@ -1,7 +1,7 @@
 import { network } from './network.js';
 
 
-export class FXMLhttpRequest {
+class FXMLhttpRequest {
 
     /**
      * method to open request to the server through the network

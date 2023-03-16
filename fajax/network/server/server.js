@@ -46,7 +46,7 @@ export class server{
       case 'POST':
       {
         if(url === "/SignUp"){
-          var user = restAPI.getAdminData(body.data.username)
+          var user = restAPI.getAdminData(body.data.UserName)
           if (user !== undefined) { // if user exists
               response = { status: 404 , body: null }
           } else {

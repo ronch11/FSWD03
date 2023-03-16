@@ -28,44 +28,47 @@
 			<button id="SignUpButton" type="button">Sign up</button>
 			<button id="LogInPageButton" type="button">Log in page</button>
 		</div>
-		<div class="area right" id="My-app">
-			<h1>mylibery</h1>			
-			<label for="book_name">Book name</label>
-			<input type="text" id="book_name" />
-			<label for="author_name">Author name</label>
-			<input type="text" id="author_name" />
-			<label for="category">Category</label>
-			<input type="text" id="category" />
-			<label for="publication_date">Publication year</label>
-			<input type="text" id="publication_date" />
-			<label for="publisher">Publisher</label>
-			<input type="text" id="publisher" />
-			<label for="isbn">isbn</label>
-			<input type="text" id="isbn" />
-			<button id="AddBooksButton" onclick="AddBooks()">Add book</button>			
-			<main class="table">
-			<section class="table__header">
-				<h1>All Books</h1>
-				<div class="input-group">
-					<input type="search" placeholder="Search Data...">                
-				</div>           
-			</section>
-			<section class="table__body left">
-				<table>
-					<thead>
-						<tr>
-							<th> book_name <span class="icon-arrow">&UpArrow;</span></th>
-							<th> author_name <span class="icon-arrow">&UpArrow;</span></th>
-							<th> category <span class="icon-arrow">&UpArrow;</span></th>
-							<th>publication_date <span class="icon-arrow">&UpArrow;</span></th>
-							<th> publisher <span class="icon-arrow">&UpArrow;</span></th>
-							<th> isbn <span class="icon-arrow">&UpArrow;</span></th>
-						</tr>
-					</thead>
-					<tbody id="table-body">
-					</tbody>
-				</table>
-			</section>	
+		<div class="area" id="My-app">
+			<div class="right">
+				<h1>mylibery</h1>			
+				<label for="book_name">Book name</label>
+				<input type="text" id="book_name" />
+				<label for="author_name">Author name</label>
+				<input type="text" id="author_name" />
+				<label for="category">Category</label>
+				<input type="text" id="category" />
+				<label for="publication_date">Publication year</label>
+				<input type="text" id="publication_date" />
+				<label for="publisher">Publisher</label>
+				<input type="text" id="publisher" />
+				<label for="isbn">isbn</label>
+				<input type="text" id="isbn" />
+				<button id="AddBooksButton" onclick="AddBooks()">Add book</button>		
+			</div>	
+			<main class="table left">
+				<section class="table__header">
+					<h1>Books</h1>
+					<div class="input-group">
+						<input type="search" placeholder="Search for spesific book">                
+					</div>           
+				</section>
+				<section class="table__body">
+					<table>
+						<thead>
+							<tr>
+								<th> book_name <span class="icon-arrow">&UpArrow;</span></th>
+								<th> author_name <span class="icon-arrow">&UpArrow;</span></th>
+								<th> category <span class="icon-arrow">&UpArrow;</span></th>
+								<th>publication_date <span class="icon-arrow">&UpArrow;</span></th>
+								<th> publisher <span class="icon-arrow">&UpArrow;</span></th>
+								<th> isbn <span class="icon-arrow">&UpArrow;</span></th>
+							</tr>
+						</thead>
+						<tbody id="table-body">
+						</tbody>
+					</table>
+				</section>	
+			</main>
 		</div>	
 	</div>
     <script src="./index.js" type="module"></script>

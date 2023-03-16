@@ -4,7 +4,7 @@ export class restAPI{
     const books = JSON.parse(localStorage.getItem("books")) || [];
     books.push(data);
     localStorage.setItem("books", JSON.stringify(books));
-    return data;
+    return books;
   };
 
   static createAdminData = (data) => {

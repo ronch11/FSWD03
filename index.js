@@ -6,6 +6,7 @@ document.getElementById('SignUpButton').addEventListener('click', sign_up);
 document.getElementById('SignUpPageButton').addEventListener('click', GetSingUpage);
 document.getElementById('AddBooksButton').addEventListener('click', AddBooks);
 
+
 /* get sign in page */
 function sign_in_page(){
     LoadSinginPage(); // call function to load login page
@@ -18,6 +19,7 @@ function LoadSinginPage(){
     taskTemplate.classList.add('display-section');// add display class to login form
     taskTemplate.classList.remove('area');// remove hide class to login form
 }
+
 /* remove signup page */
 function RemoveSignUpPage(){
     const taskTemplate = document.getElementById('signup-form');// get signup form
@@ -38,7 +40,6 @@ function LoadSingUPage(){
     taskTemplate.classList.remove('area');// remove hide class to signup form
 }
 
-
 /* remove sign in page */
 function RemoveSignInPage(){
     const taskTemplate = document.getElementById('login-form');// get login form
@@ -49,18 +50,15 @@ function RemoveSignInPage(){
 function geyMyApp(){
     LoadMyApp();
     RemoveSignInPage();
-    RemoveSignUpPage();    
+    RemoveSignUpPage();
+    displayBooks()
 }
-
 
 function LoadMyApp(){
     const taskTemplate = document.getElementById('My-app');// get my app
     taskTemplate.classList.add('display-section');// add display class to my app
     taskTemplate.classList.remove('area');// remove hide class to my app
 }
-
-
-
 
 function sign_in(event){ 
    // get password and username from login form
@@ -104,7 +102,7 @@ function sign_up(event){
     req.open(
      'POST',
      '/SignUp',
-     {data:{username: user_username, Password: user_password, firstName: user_fname, lastName:user_lname}},
+     {data:{UserName: user_username, Password: user_password, firstName: user_fname, lastName:user_lname}},
      function(response) {
         if (response.status === 200){
             geyMyApp();      
@@ -115,29 +113,6 @@ function sign_up(event){
     });
     req.send();
 }
-
-// function AddBooks() {
-//     const bookName = document.querySelector('#book_name').value;
-//     const authorName = document.querySelector('#author_name').value;
-//     const category = document.querySelector('#category').value;
-//     const publicationDate = document.querySelector('#publication_date').value;
-//     const publisher = document.querySelector('#publisher').value;
-//     const isbn = document.querySelector('#isbn').value;
-    
-//     const newBook = {
-//     book_name: bookName,
-//     author_name: authorName,
-//     category: category,
-//     publication_date: publicationDate,
-//     publisher: publisher,
-//     isbn: isbn
-//     };
-//     createBookData(newBook).then(data => {
-//     console.log("New book added:", data);
-//     }).catch(error => {
-//     console.error("Error adding book:", error.message);
-//     });
-// }
 
 function AddBooks() {
     const bookName = document.querySelector('#book_name').value;
@@ -155,40 +130,104 @@ function AddBooks() {
         publisher: publisher,
         isbn: isbn
         };
-
     var req = new FXMLhttpRequest();
     req.open(
      'POST',
      '',
      {data: newBook},
      function(response) {
-        console.log(response)
         if (response.status === 200){
-            var task = response.task;
-            addTask(task);
+            displayBooks()
         }
     });
     req.send();
 }
 
+// Function to display all books in the database
+function displayBooks() {
+    let books = {};
+    var req = new FXMLhttpRequest();
+    req.open(
+     'GET',
+     '',
+     null,
+     function(response) {
+        if (response.status === 200){
+            books = response.body
+        }
+    });
+    req.send();
 
+    const tbody = document.getElementById('table-body')
+    tbody.innerHTML = "";
+    for (let i = 0; i < books.length; i++) {
+        const book = books[i];
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${book.book_name}</td>
+            <td>${book.author_name}</td>
+            <td>${book.category}</td>
+            <td>${book.publication_date}</td>
+            <td>${book.publisher}</td>
+            <td>${book.isbn}</td>
+            <td>
+            <button class="edit" data-index="${i}">Edit</button>
+            <button class="delete" data-index="${i}">Delete</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
 
+        // tr.querySelector('.edit').addEventListener('click' , editBook);
+        // tr.querySelector('.delete').addEventListener('click' , deleteBook);
+    }
+}
 
+// // Function to delete a book from the database
+// function deleteBook(event) {
+//     var books = {};
+//     var req = new FXMLhttpRequest();
+//     req.open(
+//      'GET',
+//      '',
+//      null,
+//      function(response) {
+//         if (response.status === 200){
+//             books = response.body
+//         }
+//     });
+//     req.send();
+//   const index = event.target.dataset.index;
+//   var req = new FXMLhttpRequest();
+//     req.open(
+//      'POST',
+//      '',
+//      {data: newBook},
+//      function(response) {
+//         console.log(response)
+//         if (response.status === 200){
 
+//             //to do
 
+//         }
+//     });
+//     req.send();
+//   const books = JSON.parse(localStorage.getItem("books"));
+//   books.splice(index, 1);
+//   localStorage.setItem("books", JSON.stringify(books));
+//   displayBooks();
+// }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// // Function to edit a book in the database
+// function editBook(event) {
+//   const index = event.target.dataset.index;
+//   const books = JSON.parse(localStorage.getItem("books"));
+//   const book = books[index];
+//   const newTitle = prompt("Enter a new title:", book.title);
+//   const newAuthor = prompt("Enter a new author:", book.author);
+//   const newYear = prompt("Enter a new year:", book.year);
+//   book.title = newTitle;
+//   book.author = newAuthor;
+//   book.year = newYear;
+//   localStorage.setItem("books", JSON.stringify(books));
+//   displayBooks();
+// }

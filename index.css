@@ -33,11 +33,9 @@ body {
   position: absolute;
   top: 50%;
   left: 20%;
-  transform: translate(5%, 5%);
+  transform: translate(-45%, -45%);
   width: 300px;  
   padding: 20px;
-  flex: auto;
-  flex-wrap: wrap;
 }
 
 .form h1 {
@@ -365,5 +363,17 @@ thead th.active,tbody td.active {
     height: auto;
 }
 
+#My-app{
+    display: inline-flex;
+    padding: 5 , 5;
+}
 
+.right{
+    width: 300px;
+    height: 300px;
+}
 
+.left{
+    width: 100px;
+    height: 100px;
+}

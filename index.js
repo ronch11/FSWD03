@@ -58,6 +58,9 @@ function LoadMyApp(){
     taskTemplate.classList.remove('area');// remove hide class to my app
 }
 
+
+
+
 function sign_in(event){ 
    // get password and username from login form
     var userElement = document.getElementById("UsernameText");
@@ -68,6 +71,16 @@ function sign_in(event){
 }
 
 function sign_up(event){
+
+    var userElement = document.getElementById("SignUpUsernameText");
+    var user_username = userElement.value;
+    var passElement = document.getElementById("SignUpPasswordText");
+    var user_password = passElement.value;
+    var fnameElement = document.getElementById("SignUpFNameText");
+    var user_fname = fnameElement.value;
+    var lnameElement = document.getElementById("SignUpLNameText");
+    var user_lname = lnameElement.value;
+    geyMyApp();
 
 
 }

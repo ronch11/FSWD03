@@ -34,7 +34,7 @@ export class server{
               response = { status: 404, body: null }
           } else {
             var book = restAPI.getBookData(body.book_name)
-            if (book)
+            if (book !== undefined)
               response = { status: 200, body: book }
             else 
               response = { status: 404, body: null }

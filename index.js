@@ -195,28 +195,32 @@ function searchForBook() {
      function(response) {
         if (response.status === 200){
             books = response.body
+
+            const tbody = document.getElementById('table-body')
+            tbody.innerHTML = "";
+            for (let i = 0; i < 1; i++) {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${books.book_name}</td>
+                    <td>${books.author_name}</td>
+                    <td>${books.category}</td>
+                    <td>${books.publication_date}</td>
+                    <td>${books.publisher}</td>
+                    <td>${books.isbn}</td>
+                    <td>
+                    <button class="edit" data-index="${i}">Edit</button>
+                    <button class="delete" data-index="${i}">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            }
+        } else {
+            alert("book font exist in the system")
         }
     });
     req.send();
 
-    const tbody = document.getElementById('table-body')
-    tbody.innerHTML = "";
-    for (let i = 0; i < 1; i++) {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${books.book_name}</td>
-            <td>${books.author_name}</td>
-            <td>${books.category}</td>
-            <td>${books.publication_date}</td>
-            <td>${books.publisher}</td>
-            <td>${books.isbn}</td>
-            <td>
-            <button class="edit" data-index="${i}">Edit</button>
-            <button class="delete" data-index="${i}">Delete</button>
-            </td>
-        `;
-        tbody.appendChild(tr);
-    }
+    
 }
 
 // // Function to delete a book from the database
